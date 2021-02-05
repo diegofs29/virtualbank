@@ -17,13 +17,13 @@ class VirtualbankApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-	
+
 	@Autowired
 	private UsersRepository uR;
 
 	@Test
-	public void whenFindingCustomerById_thenCorrect() {
-		uR.save(new User("John", "71904455X"));
+	public void whenFindingUserById_thenCorrect() {
+		uR.save(new User("71904455X", "Paco"));
 		assertThat(uR.findById(1L)).isInstanceOf(Optional.class);
 	}
 

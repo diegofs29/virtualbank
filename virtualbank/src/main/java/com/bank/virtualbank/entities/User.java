@@ -1,9 +1,13 @@
 package com.bank.virtualbank.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,32 +19,33 @@ public class User {
 	private long id;
 
 	private String dni;
-	private String nombre;
+	private String name;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Cuenta> cuentas;
 
-	private Cuenta[] cuentas;
-
-	public User(String dni, String nombre) {
+	public User(String dni, String name) {
 
 		this.dni = dni;
-		this.nombre = nombre;
+		this.name = name;
 
 	}
-	
-	public User() {}
+
+	public User() {
+	}
 
 	public String getDni() {
 		return dni;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return name;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public Cuenta[] getCuentas() {
+	public Set<Cuenta> getCuentas() {
 		return cuentas;
 	}
 
