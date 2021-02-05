@@ -1,13 +1,22 @@
 package com.bank.virtualbank.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "users")
 public class User {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
 	private String dni;
 	private String nombre;
-	private long idCliente;
+
 	private Cuenta[] cuentas;
 
 	public User(String dni, String nombre) {
@@ -16,6 +25,8 @@ public class User {
 		this.nombre = nombre;
 
 	}
+	
+	public User() {}
 
 	public String getDni() {
 		return dni;
@@ -25,8 +36,8 @@ public class User {
 		return nombre;
 	}
 
-	public long getIdCliente() {
-		return idCliente;
+	public long getId() {
+		return id;
 	}
 
 	public Cuenta[] getCuentas() {
