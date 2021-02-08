@@ -19,12 +19,12 @@ public class CuentaController {
 		this.cS = cS;
 	}
 
-	@RequestMapping(value = "/cuenta/retirar", method = RequestMethod.PUT)
-	public String retirarDinero(@RequestParam double cantidad, @RequestParam long idCuenta) {
+	@RequestMapping(value = "/cuenta/retirar", method = RequestMethod.PUT, produces = "application/json")
+	public Cuenta retirarDinero(@RequestParam double cantidad, @RequestParam long idCuenta) {
 		Cuenta c = cS.getCuenta(idCuenta);
 		boolean retirado = c.retirarSaldo(cantidad);
 		cS.actualizarCuenta(c);
-		return retirado ? "Se han extraido " + cantidad + "€" : "No queda suficiente saldo";
+		return c;
 	}
 
 }

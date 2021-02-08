@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "cuentas")
 public class Cuenta {
@@ -15,6 +17,7 @@ public class Cuenta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idCuenta;
+	@JsonBackReference
 	@ManyToOne
 	private User user;
 
