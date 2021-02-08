@@ -1,20 +1,37 @@
 package com.bank.virtualbank.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "users")
 public class User {
-	
-	private String dni;
-	private String nombre;
-	private long idCliente;
-	private Cuenta[] cuentas;
 
-	public User(String dni, String nombre) {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
+	private String dni;
+	private String name;
+	private boolean blocked;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Cuenta> cuentas;
+
+	public User(String dni, String name) {
 
 		this.dni = dni;
-		this.nombre = nombre;
+		this.name = name;
+		this.blocked = false;
+	}
 
+	public User() {
 	}
 
 	public String getDni() {
@@ -22,15 +39,32 @@ public class User {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return name;
 	}
 
-	public long getIdCliente() {
-		return idCliente;
+	public boolean isBlocked() {
+		return blocked;
 	}
 
-	public Cuenta[] getCuentas() {
+	public long getId() {
+		return id;
+	}
+
+	public Set<Cuenta> getCuentas() {
 		return cuentas;
+	}
+	
+	public void bloquear() {
+		blocked = true;
+	}
+	
+	public void desbloquear() {
+		blocked = false;
+	}
+
+	@Override
+	public String toString() {
+		return "User [dni=" + dni + ", name=" + name + "]";
 	}
 
 }
