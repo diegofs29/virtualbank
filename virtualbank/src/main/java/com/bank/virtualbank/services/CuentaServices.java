@@ -14,7 +14,7 @@ public class CuentaServices {
 	@Autowired
 	CuentaRepository cR;
 
-	public void crearCuenta(Cuenta cuenta) {
+	public void actualizarCuenta(Cuenta cuenta) {
 		cR.save(cuenta);
 
 	}

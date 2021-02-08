@@ -29,7 +29,7 @@ public class CuentaController {
 		if (uS.getUser(userId).isPresent()) {
 			User u = uS.getUser(userId).get();
 			Cuenta c = new Cuenta(0, u);
-			cS.crearCuenta(c);
+			cS.actualizarCuenta(c);
 			return "Cuenta creada correctamente";
 		} else {
 			return "Usuario no encontrado";
