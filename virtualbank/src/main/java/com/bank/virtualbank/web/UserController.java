@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.virtualbank.entities.User;
 import com.bank.virtualbank.services.UserServices;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @RestController
 public class UserController {

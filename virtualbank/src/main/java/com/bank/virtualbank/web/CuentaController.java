@@ -22,7 +22,6 @@ public class CuentaController {
 	@RequestMapping(value = "/cuenta/retirar", method = RequestMethod.PUT, produces = "application/json")
 	public Cuenta retirarDinero(@RequestParam double cantidad, @RequestParam long idCuenta) {
 		Cuenta c = cS.getCuenta(idCuenta);
-		boolean retirado = c.retirarSaldo(cantidad);
 		cS.actualizarCuenta(c);
 		return c;
 	}
