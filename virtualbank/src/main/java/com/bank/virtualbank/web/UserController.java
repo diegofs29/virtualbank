@@ -1,8 +1,9 @@
 package com.bank.virtualbank.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,30 +22,30 @@ public class UserController {
 		this.uS = uS;
 	}
 
-	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public String addUser(@RequestParam String dni, @RequestParam String name) {
+	@RequestMapping(value = "/user/add", method = RequestMethod.POST, produces = "application/json")
+	public User addUser(@RequestParam String dni, @RequestParam String name) {
 		User u = new User(dni, name);
 		uS.darAltaUsuario(u);
-		return "Added user with DNI = " + u.getDni() + " and name = " + u.getNombre();
+		return u;
 	}
 	
-	@RequestMapping(value = "/user/get", method = RequestMethod.GET)
-	public String getUsers() {
-		StringBuilder sb = new StringBuilder();
+	@RequestMapping(value = "/user/get", method = RequestMethod.GET, produces = "application/json")
+	public List<User> getUsers() {
+		List<User> list = new ArrayList<User>();
 		Iterable<User> i = uS.getUsers();
-		i.forEach(user -> sb.append(user.toString() + "\n"));
-		return sb.toString();
+		i.forEach(user -> list.add(user));
+		return list;
 	}
 	
-	@RequestMapping(value = "/user/block", method = RequestMethod.PUT)
-	public String blockUser(@RequestParam long id) {
+	@RequestMapping(value = "/user/block", method = RequestMethod.PUT, produces = "application/json")
+	public User blockUser(@RequestParam long id) {
 		User u = uS.getUser(id);
 		if(u.isBlocked())
 			u.desbloquear();
 		else
 			u.bloquear();
 		uS.actualizarUsuario(u);
-		return u.isBlocked() ? "Usuario bloqueado" : "Usuario desbloqueado";
+		return u;
 	}
 
 }
