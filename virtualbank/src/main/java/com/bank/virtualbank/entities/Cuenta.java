@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Cuenta {
 	private double saldo;
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String numeroCuenta;
+	private long numeroCuenta;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idCuenta;
@@ -32,14 +32,14 @@ public class Cuenta {
 		return saldo;
 	}
 
-	public String getNumeroCuenta() {
+	public long getNumeroCuenta() {
 		return numeroCuenta;
 	}
 
 	public long getIdCuenta() {
 		return idCuenta;
 	}
-	
+
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}

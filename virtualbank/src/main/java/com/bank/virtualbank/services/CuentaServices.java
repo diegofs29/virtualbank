@@ -25,8 +25,10 @@ public class CuentaServices {
 
 	}
 
-	public Optional<Cuenta> getCuenta(Cuenta cuenta) {
-		return cR.findById(cuenta.getIdCuenta());
+	public Optional<Cuenta> getCuenta(long id) {
+
+		return cR.findById(id);
+
 	}
 
 }
