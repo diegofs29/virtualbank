@@ -27,7 +27,8 @@ public class UserServices {
 	}
 	
 	public User getUser(long id) {
-		return uR.findById(id).get();
+		Optional<User> u = uR.findById(id);
+		return u.isPresent() ? u.get() : null;
 	}
 	
 	public void actualizarUsuario(User user) {
