@@ -19,4 +19,8 @@ public class UserServices {
 	public void vincularCuenta(Cuenta cuenta, User user) {
 		Optional<User> u = uR.findById(user.getId());
 	}
+	
+	public void darAltaUsuario(User user) {
+		User u = uR.save(user);
+	}
 }
