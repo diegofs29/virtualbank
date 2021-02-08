@@ -1,5 +1,7 @@
 package com.bank.virtualbank.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,8 @@ public class CuentaServices {
 	private CuentaRepository cR;
 	
 	public Cuenta getCuenta(long id) {
-		return cR.findById(id).get();
+		Optional<Cuenta> c = cR.findById(id);
+		return c.isPresent() ? c.get() : null;
 	}
 	
 	public void actualizarCuenta(Cuenta cuenta) {
