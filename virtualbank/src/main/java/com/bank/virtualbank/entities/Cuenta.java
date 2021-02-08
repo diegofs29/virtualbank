@@ -13,7 +13,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "cuentas")
 public class Cuenta {
 	private double saldo;
-	private String numeroCuenta;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long numeroCuenta;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idCuenta;
@@ -21,25 +22,31 @@ public class Cuenta {
 	@ManyToOne
 	private User user;
 
-	public Cuenta(double saldo, String numeroCuenta, User user) {
+	public Cuenta(double saldo, User user) {
 		this.saldo = saldo;
-		this.numeroCuenta = numeroCuenta;
 		this.user = user;
 
 	}
 	
-	public Cuenta() {}
+	
+
+	public Cuenta() {
+	}
 
 	public double getSaldo() {
 		return saldo;
 	}
 
-	public String getNumeroCuenta() {
+	public long getNumeroCuenta() {
 		return numeroCuenta;
 	}
 
 	public long getIdCuenta() {
 		return idCuenta;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
 	}
 
 	public User getUser() {

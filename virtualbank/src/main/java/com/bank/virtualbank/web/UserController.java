@@ -27,10 +27,10 @@ public class UserController {
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST, produces = "application/json")
 	public User addUser(@RequestParam String dni, @RequestParam String name) {
 		User u = new User(dni, name);
-		uS.darAltaUsuario(u);
+		uS.actualizarUsuario(u);
 		return u;
 	}
-	
+
 	@RequestMapping(value = "/user/get", method = RequestMethod.GET, produces = "application/json")
 	public List<User> getUsers() {
 		List<User> list = new ArrayList<User>();
@@ -38,10 +38,10 @@ public class UserController {
 		i.forEach(user -> list.add(user));
 		return list;
 	}
-	
+
 	@RequestMapping(value = "/user/block", method = RequestMethod.PUT, produces = "application/json")
 	public User blockUser(@RequestParam long id) {
-		User u = uS.getUser(id);
+		User u = uS.getUser2(id);
 		if (u != null) {
 			if (u.isBlocked())
 				u.desbloquear();

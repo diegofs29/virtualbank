@@ -1,3 +1,4 @@
+
 package com.bank.virtualbank.services;
 
 import java.util.Optional;
@@ -10,15 +11,22 @@ import com.bank.virtualbank.repositories.CuentaRepository;
 
 @Service
 public class CuentaServices {
-	
+
 	@Autowired
-	private CuentaRepository cR;
-	
-	public Cuenta getCuenta(long id) {
-		Optional<Cuenta> c = cR.findById(id);
-		return c.isPresent() ? c.get() : null;
+	CuentaRepository cR;
+
+	public void meterDinero(Cuenta cuenta, double saldoAMeter) {
+		cuenta.setSaldo(cuenta.getSaldo() + saldoAMeter);
+		cR.save(cuenta);
+
 	}
-	
+
+	public Optional<Cuenta> getCuenta(long id) {
+
+		return cR.findById(id);
+
+	}
+
 	public void actualizarCuenta(Cuenta cuenta) {
 		cR.save(cuenta);
 	}

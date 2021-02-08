@@ -22,7 +22,9 @@ public class User {
 
 	private String dni;
 	private String name;
+
 	private boolean blocked;
+
 	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Cuenta> cuentas;
