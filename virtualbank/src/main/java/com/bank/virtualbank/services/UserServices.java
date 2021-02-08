@@ -1,10 +1,6 @@
 package com.bank.virtualbank.services;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +24,13 @@ public class UserServices {
 	
 	public Iterable<User> getUsers() {
 		return uR.findAll();
+	}
+	
+	public User getUser(long id) {
+		return uR.findById(id).get();
+	}
+	
+	public void actualizarUsuario(User user) {
+		uR.save(user);
 	}
 }

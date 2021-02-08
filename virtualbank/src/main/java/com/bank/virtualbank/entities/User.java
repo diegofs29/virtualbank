@@ -20,6 +20,7 @@ public class User {
 
 	private String dni;
 	private String name;
+	private boolean blocked;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Cuenta> cuentas;
 
@@ -27,7 +28,7 @@ public class User {
 
 		this.dni = dni;
 		this.name = name;
-
+		this.blocked = false;
 	}
 
 	public User() {
@@ -41,12 +42,24 @@ public class User {
 		return name;
 	}
 
+	public boolean isBlocked() {
+		return blocked;
+	}
+
 	public long getId() {
 		return id;
 	}
 
 	public Set<Cuenta> getCuentas() {
 		return cuentas;
+	}
+	
+	public void bloquear() {
+		blocked = true;
+	}
+	
+	public void desbloquear() {
+		blocked = false;
 	}
 
 	@Override

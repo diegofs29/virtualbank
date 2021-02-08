@@ -35,5 +35,16 @@ public class UserController {
 		i.forEach(user -> sb.append(user.toString() + "\n"));
 		return sb.toString();
 	}
+	
+	@RequestMapping(value = "/user/block", method = RequestMethod.PUT)
+	public String blockUser(@RequestParam long id) {
+		User u = uS.getUser(id);
+		if(u.isBlocked())
+			u.desbloquear();
+		else
+			u.bloquear();
+		uS.actualizarUsuario(u);
+		return u.isBlocked() ? "Usuario bloqueado" : "Usuario desbloqueado";
+	}
 
 }
