@@ -49,4 +49,9 @@ public class User {
 		return cuentas;
 	}
 
+	@Override
+	public String toString() {
+		return "User [dni=" + dni + ", name=" + name + "]";
+	}
+
 }

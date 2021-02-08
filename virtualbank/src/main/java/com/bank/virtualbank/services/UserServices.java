@@ -1,5 +1,7 @@
 package com.bank.virtualbank.services;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -22,5 +24,9 @@ public class UserServices {
 	
 	public void darAltaUsuario(User user) {
 		User u = uR.save(user);
+	}
+	
+	public Iterable<User> getUsers() {
+		return uR.findAll();
 	}
 }
