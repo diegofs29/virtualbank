@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Table(name = "cuentas")
 public class Cuenta {
 	private double saldo;
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String numeroCuenta;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,11 +19,13 @@ public class Cuenta {
 	@ManyToOne
 	private User user;
 
-	public Cuenta(double saldo, String numeroCuenta, User user) {
+	public Cuenta(double saldo, User user) {
 		this.saldo = saldo;
-		this.numeroCuenta = numeroCuenta;
 		this.user = user;
 
+	}
+
+	public Cuenta() {
 	}
 
 	public double getSaldo() {
@@ -35,6 +38,10 @@ public class Cuenta {
 
 	public long getIdCuenta() {
 		return idCuenta;
+	}
+	
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
 	}
 
 	public User getUser() {
