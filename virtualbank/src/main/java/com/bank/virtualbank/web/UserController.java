@@ -41,7 +41,7 @@ public class UserController {
 
 	@RequestMapping(value = "/user/block", method = RequestMethod.PUT, produces = "application/json")
 	public User blockUser(@RequestParam long id) {
-		User u = uS.getUser2(id);
+		User u = uS.getUser(id).get();
 		if (u != null) {
 			if (u.isBlocked())
 				u.desbloquear();
