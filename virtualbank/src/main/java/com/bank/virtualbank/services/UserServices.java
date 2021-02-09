@@ -21,11 +21,6 @@ public class UserServices {
 		return uR.findAll();
 	}
 
-	public User getUser2(long id) {
-		Optional<User> u = uR.findById(id);
-		return u.isPresent() ? u.get() : null;
-	}
-
 	public void actualizarUsuario(User user) {
 		uR.save(user);
 	}
