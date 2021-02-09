@@ -13,7 +13,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "cuentas")
 public class Cuenta {
 	private double saldo;
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	
+	
 	private long numeroCuenta;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,8 +28,6 @@ public class Cuenta {
 		this.user = user;
 
 	}
-	
-	
 
 	public Cuenta() {
 	}
@@ -52,9 +51,9 @@ public class Cuenta {
 	public User getUser() {
 		return user;
 	}
-	
+
 	public boolean retirarSaldo(double saldo) {
-		if(saldo <= this.saldo) {
+		if (saldo <= this.saldo) {
 			this.saldo -= saldo;
 			return true;
 		}
