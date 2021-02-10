@@ -2,6 +2,7 @@ package com.bank.virtualbank.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,17 +42,19 @@ public class UserController {
 
 	@RequestMapping(value = "/user/block", method = RequestMethod.PUT, produces = "application/json")
 	public User blockUser(@RequestParam long id) {
-		User u = uS.getUser(id).get();
-		if (u != null) {
-			if (u.isBlocked())
-				u.desbloquear();
+		Optional<User> u = uS.getUser(id);
+		User user;
+		if (u.isPresent()) {
+			user = u.get();
+			if (user.isBlocked())
+				user.desbloquear();
 			else
-				u.bloquear();
-			uS.actualizarUsuario(u);
+				user.bloquear();
+			uS.actualizarUsuario(user);
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Element id not present");
 		}
-		return u;
+		return user;
 	}
 
 }
