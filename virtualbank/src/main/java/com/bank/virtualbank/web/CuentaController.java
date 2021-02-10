@@ -72,4 +72,14 @@ public class CuentaController {
 
 	}
 
+	@RequestMapping(value = "/cuenta/checkWithUser", method = RequestMethod.GET, produces = "application/json")
+	public Cuenta consultarSaldoWithUser(@RequestParam long id, @RequestParam long idUser) {
+		if (cS.getCuenta(id).isPresent()) {
+			return cS.getCuenta(id).get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Element id not present");
+		}
+
+	}
+
 }
