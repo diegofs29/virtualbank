@@ -17,6 +17,7 @@ public class CuentaServices {
 
 	public void meterDinero(Cuenta cuenta, double saldoAMeter) {
 		cuenta.setSaldo(cuenta.getSaldo() + saldoAMeter);
+		cuenta.addPuntos(saldoAMeter);
 		cR.save(cuenta);
 
 	}
