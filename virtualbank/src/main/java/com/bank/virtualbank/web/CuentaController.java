@@ -13,6 +13,8 @@ import com.bank.virtualbank.entities.Cuenta;
 import com.bank.virtualbank.entities.User;
 import com.bank.virtualbank.services.CuentaServices;
 import com.bank.virtualbank.services.UserServices;
+import com.bank.virtualbank.util.View;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 public class CuentaController {
@@ -62,6 +64,7 @@ public class CuentaController {
 
 	}
 
+	
 	@RequestMapping(value = "/cuenta/check", method = RequestMethod.GET, produces = "application/json")
 	public Cuenta consultarSaldo(@RequestParam long id) {
 		if (cS.getCuenta(id).isPresent()) {

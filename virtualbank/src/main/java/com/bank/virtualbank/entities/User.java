@@ -10,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.bank.virtualbank.util.View;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "users")
@@ -20,12 +23,16 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@JsonView(View.Public.class)
 	private String dni;
+	@JsonView(View.Public.class)
 	private String name;
 
+	@JsonView(View.Public.class)
 	private boolean blocked;
 
 	@JsonManagedReference
+	@JsonView(View.Public.class)
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Cuenta> cuentas;
 
@@ -58,11 +65,11 @@ public class User {
 	public Set<Cuenta> getCuentas() {
 		return cuentas;
 	}
-	
+
 	public void bloquear() {
 		blocked = true;
 	}
-	
+
 	public void desbloquear() {
 		blocked = false;
 	}

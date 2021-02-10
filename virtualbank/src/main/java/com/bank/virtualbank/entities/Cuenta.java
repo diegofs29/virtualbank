@@ -7,16 +7,22 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.bank.virtualbank.util.View;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "cuentas")
 public class Cuenta {
+	@JsonView(View.Internal.class)	
 	private double saldo;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(View.Public.class)
 	private long idCuenta;
+	
 	@JsonBackReference
 	@ManyToOne
 	private User user;

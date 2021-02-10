@@ -13,6 +13,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.bank.virtualbank.entities.User;
 import com.bank.virtualbank.services.UserServices;
+import com.bank.virtualbank.util.View;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 public class UserController {
@@ -37,6 +40,20 @@ public class UserController {
 		Iterable<User> i = uS.getUsers();
 		i.forEach(user -> list.add(user));
 		return list;
+	}
+
+	@JsonView(View.Public.class)
+	@RequestMapping(value = "/user/getId", method = RequestMethod.GET, produces = "application/json")
+	public User getUser(@RequestParam long idUsuario) {
+		if (uS.getUser(idUsuario).isPresent()) {
+			User usuario = uS.getUser(idUsuario).get();
+			return usuario;
+
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Element id not present");
+
+		}
+
 	}
 
 	@RequestMapping(value = "/user/block", method = RequestMethod.PUT, produces = "application/json")
