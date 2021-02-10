@@ -17,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Cuenta {
 	@JsonView(View.Internal.class)	
 	private double saldo;
+	
+	@JsonView(View.Public.class)
+	private int puntos;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,6 +47,10 @@ public class Cuenta {
 		return idCuenta;
 	}
 
+	public int getPuntos() {
+		return puntos;
+	}
+
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
@@ -58,6 +65,21 @@ public class Cuenta {
 			return true;
 		}
 		return false;
+	}
+	
+	public void addPuntos(double ingreso) {
+		if(ingreso > 20) {
+			if(ingreso > 40) {
+				if(ingreso > 70) {
+					puntos += 3;
+					return;
+				}
+				puntos += 2;
+				return;
+			}
+			puntos += 1;
+			return;
+		}
 	}
 
 }
