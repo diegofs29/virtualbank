@@ -42,19 +42,17 @@ public class UserController {
 
 	@RequestMapping(value = "/user/block", method = RequestMethod.PUT, produces = "application/json")
 	public User blockUser(@RequestParam long id) {
-		Optional<User> u = uS.getUser(id);
-		User user;
-		if (u.isPresent()) {
-			user = u.get();
-			if (user.isBlocked())
-				user.desbloquear();
+		if (uS.getUser(id).isPresent()) {
+			User u = uS.getUser(id).get();
+			if (u.isBlocked())
+				u.desbloquear();
 			else
-				user.bloquear();
-			uS.actualizarUsuario(user);
+				u.bloquear();
+			uS.actualizarUsuario(u);
+			return u;
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Element id not present");
 		}
-		return user;
 	}
 
 }
