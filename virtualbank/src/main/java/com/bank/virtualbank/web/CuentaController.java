@@ -13,8 +13,6 @@ import com.bank.virtualbank.entities.Cuenta;
 import com.bank.virtualbank.entities.User;
 import com.bank.virtualbank.services.CuentaServices;
 import com.bank.virtualbank.services.UserServices;
-import com.bank.virtualbank.util.View;
-import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 public class CuentaController {

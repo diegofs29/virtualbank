@@ -2,7 +2,6 @@ package com.bank.virtualbank.web;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,6 @@ import org.springframework.web.server.ResponseStatusException;
 import com.bank.virtualbank.entities.User;
 import com.bank.virtualbank.services.UserServices;
 import com.bank.virtualbank.util.View;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
@@ -30,6 +28,9 @@ public class UserController {
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST, produces = "application/json")
 	public User addUser(@RequestParam String dni, @RequestParam String name) {
+		if(dni.length() != 8) {
+			throw new ResponseStatusException(HttpStatus.CONFLICT, "DNI NOT VALID");
+		}
 		User u = new User(dni, name);
 		uS.actualizarUsuario(u);
 		return u;

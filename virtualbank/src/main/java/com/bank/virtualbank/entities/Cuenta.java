@@ -9,15 +9,14 @@ import javax.persistence.Table;
 
 import com.bank.virtualbank.util.View;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "cuentas")
 public class Cuenta {
-	@JsonView(View.Internal.class)	
+	@JsonView(View.Internal.class)
 	private double saldo;
-	
+
 	@JsonView(View.Public.class)
 	private int puntos;
 
@@ -25,7 +24,7 @@ public class Cuenta {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonView(View.Public.class)
 	private long idCuenta;
-	
+
 	@JsonBackReference
 	@ManyToOne
 	private User user;
@@ -66,11 +65,11 @@ public class Cuenta {
 		}
 		return false;
 	}
-	
+
 	public void addPuntos(double ingreso) {
-		if(ingreso > 20) {
-			if(ingreso > 40) {
-				if(ingreso > 70) {
+		if (ingreso > 20) {
+			if (ingreso > 40) {
+				if (ingreso > 70) {
 					puntos += 3;
 					return;
 				}
