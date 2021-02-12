@@ -51,8 +51,9 @@ public class CuentaController {
 	}
 
 	@RequestMapping(value = "/cuenta/ingreso", method = RequestMethod.PUT, produces = "application/json")
-	public Cuenta ingresarSaldo(@RequestParam long id, @RequestParam long saldo) {
+	public Cuenta ingresarSaldo(@RequestParam long id, @RequestParam double saldo) {
 
+		
 		if ((cS.getCuenta(id).isPresent())) {
 			cS.meterDinero(cS.getCuenta(id).get(), saldo);
 			return cS.getCuenta(id).get();
