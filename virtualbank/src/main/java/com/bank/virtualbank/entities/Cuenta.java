@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "cuentas")
 public class Cuenta {
 	private double saldo;
+	//prueba commit
 	
 	
 	private long numeroCuenta;
